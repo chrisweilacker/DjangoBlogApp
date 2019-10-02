@@ -25,12 +25,13 @@ SECRET_KEY = '*5+lky4)mnd^*$s!rv9^nox=rc)%)0k5#nw5kvde-01ak!sn*q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['chrispythonblog.herokuapp.com', 'blog.cweil.dev']
+ALLOWED_HOSTS = ['chrispythonblog.herokuapp.com', 'blog.cweil.dev', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,3 +132,4 @@ os.path.join(BASE_DIR, 'static')
 # # Configure Django App for Heroku.
 # import django_heroku
 # django_heroku.settings(locals())
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
